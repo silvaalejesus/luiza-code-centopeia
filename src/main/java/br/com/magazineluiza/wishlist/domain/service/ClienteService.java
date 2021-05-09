@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.magazineluiza.wishlist.domain.service.entity.Cliente;
-import br.com.magazineluiza.wishlist.domain.service.repository.ClienteRepository;
+import br.com.magazineluiza.wishlist.domain.entity.Cliente;
+import br.com.magazineluiza.wishlist.domain.repository.ClienteRepository;
 
 @Service
 public class ClienteService implements ICliente {
@@ -15,10 +15,10 @@ public class ClienteService implements ICliente {
 
     @Override
     public Cliente GetById(Long id) {
-        Optional<Cliente> cliente = _clienteRepository.findById(id);
-        if (Cliente.isPresent()) {
-            return Cliente.get();
-        }
+        // Optional<Cliente> cliente = _clienteRepository.findById(id);
+        // if (Cliente.isPresent()) {
+        //     return Cliente.get();
+        // }
         return null;
     }
 

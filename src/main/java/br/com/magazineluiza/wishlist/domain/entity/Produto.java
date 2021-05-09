@@ -40,7 +40,7 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public String getPreco() {
+    public Double getPreco() {
         return preco;
     }
 

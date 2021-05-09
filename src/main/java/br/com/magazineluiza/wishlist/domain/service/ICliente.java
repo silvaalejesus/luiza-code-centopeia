@@ -1,4 +1,4 @@
-package br.com.magazineluiza.wishlist.domain.service.service;
+package br.com.magazineluiza.wishlist.domain.service;
 
 import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 
