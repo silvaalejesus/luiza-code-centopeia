@@ -1,8 +1,8 @@
-package br.com.treinamento.springbootapi.repository;
+package br.com.magazineluiza.wishlist.domain.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import br.com.magazineluiza.wishlist.domain.entity;
 
-public interface BookRepository extends CrudRepository<Book, Long> {
 
-    Book findByIsbn(String isbn);
+public interface ClienteRepository extends CrudRepository<Cliente, Long> {
+
 }
