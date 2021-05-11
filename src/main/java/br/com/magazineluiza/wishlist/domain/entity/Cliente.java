@@ -13,7 +13,13 @@ public class Cliente {
     private String sobrenome;
     @Column(unique = true)
     private String cpf;
-    
+
+    public Cliente(String nome, String sobrenome, String cpf) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+    }
+
     public Long getId() {
         return id;
     }

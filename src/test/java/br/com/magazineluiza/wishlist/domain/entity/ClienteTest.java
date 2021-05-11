@@ -8,6 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ClienteTest {
 
-  
+   @Test
+    public void criandoInstanciaCliente(){
+        Cliente cliente = new CarroBuilder().defaultValues();
+        assertThat(cliente).isNotNull();
+    }
 
 }
