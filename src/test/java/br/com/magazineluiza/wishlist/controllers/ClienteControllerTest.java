@@ -45,9 +45,9 @@ public class ClienteControllerTest {
         when(service.Create(cliente)).thenReturn(cliente);
         Cliente result = clienteController.Create(cliente);
  
-        assertEquals("Joao", result.getNome());
-        assertEquals("Ferreira", result.getSobrenome());
-        assertEquals("64195160057", result.getCpf());
+        assertEquals(cliente.getNome(), result.getNome());
+        assertEquals(cliente.getSobrenome(), result.getSobrenome());
+        assertEquals(cliente.getCpf(), result.getCpf());
 	}
 
   
