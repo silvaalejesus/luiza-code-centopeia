@@ -6,6 +6,16 @@ import javax.persistence.*;
 @Table(name = "produtos")
 public class Produto {
 
+    public Produto(){}
+
+    public Produto(String nome, String categoria, Double preco, String descricao) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.descricao = descricao;
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -55,4 +65,15 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+    return "Produto{" +
+            "id=" + id +
+            ", nome='" + nome + '\'' +
+            ", categoria='" + categoria + '\'' +
+            ", preco='" + preco + '\'' +
+            ", descricao='" + descricao + '\'' +
+            '}';
+}
 }
