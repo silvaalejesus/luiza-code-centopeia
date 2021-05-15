@@ -36,4 +36,22 @@ public class ClienteController {
     public ResponseEntity<Cliente> Create(@RequestBody Cliente cliente) {
         return new ResponseEntity<Cliente>(_clienteService.Create(cliente), HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id) {
+        Boolean deletedClient = _clienteService.Delete(id);
+        if (deletedClient)
+            return new ResponseEntity<Object>(HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Cliente> Update(@PathVariable(value = "id") long id, @RequestBody Cliente cliente) {
+        Cliente client = _clienteService.Update(id, cliente);
+        if (client != null)
+            return new ResponseEntity<Cliente>(client, HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

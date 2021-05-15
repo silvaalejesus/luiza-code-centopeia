@@ -26,4 +26,25 @@ public class ClienteService implements ICliente {
     public Cliente Create(Cliente cliente) {
         return _clienteRepository.save(cliente);
     }
+
+    @Override
+    public Boolean Delete(Long id) {
+        Cliente cliente = GetById(id);
+        if (cliente != null) {
+            _clienteRepository.delete(cliente);
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public Cliente Update(Long id, Cliente _cliente) {
+        Cliente cliente = GetById(id);
+        if (cliente != null) {
+            cliente.setNome(_cliente.getNome());
+            cliente.setSobrenome(_cliente.getSobrenome());
+            cliente.setCpf(_cliente.getCpf());
+            return Create(cliente);
+        }
+        return null;
+    }
 }
