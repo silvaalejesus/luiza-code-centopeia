@@ -9,25 +9,34 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.WishList;
 import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/adicionar-produto")
 public class WishListController {
+
     @Autowired
     private ProdutoService _produtoService;
 
     @Autowired
-    private WishListService _WishListService;
+    private WishListService _wishListService;
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value= "/cadastro-produto" method = RequestMethod.POST)
     public Produto Create(@RequestBody Produto produto) {
         return _produtoService.Create(produto);
     }
 
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/wishlist" method = RequestMethod.POST)
     public WishList Create(@RequestBody WishList WishList) {
         return _WishListService.Create(WishList);    
            
     }
+
+    @RequestMapping(value="/mostrar-produto", method=RequestMethod.GET)
+    public List<Produto> listar() {
+        return WishListService.list();
+    }
+    ) 
 }
