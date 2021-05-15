@@ -6,16 +6,39 @@ import javax.persistence.*;
 @Table(name = "produtos")
 public class Produto {
 
+    public Produto(){}
+
+    public Produto(String nome, String categoria, Double preco, String descricao) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.descricao = descricao;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name="nome")
     private String nome;
+    @Column(name="categoria")
     private String categoria;
+    @Column(name="preco")
     private Double preco;
+    @Column(name="descricao")
     private String descricao;
-   
-    
+
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "produtos")
+    private List<Cliente> clientes;
+    @JsonIgnore
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    @JsonProperty
+    public void setClientes(List<Cliente> clientes) {
+        thisclientes = clientes;
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,4 +78,15 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+    return "Produto{" +
+            "id=" + id +
+            ", nome='" + nome + '\'' +
+            ", categoria='" + categoria + '\'' +
+            ", preco='" + preco + '\'' +
+            ", descricao='" + descricao + '\'' +
+            '}';
+}
 }
