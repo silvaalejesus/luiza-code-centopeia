@@ -29,7 +29,7 @@ public class Cliente {
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name ="wishlist",
+    @JoinTable(name ="cliente_produto",
             joinColumns = @JoinColumn(name="id_cliente"),
             inverseJoinColumns = @JoinColumn(name = "id_produto"))
 

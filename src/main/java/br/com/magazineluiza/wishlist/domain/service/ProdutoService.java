@@ -1,5 +1,6 @@
 package br.com.magazineluiza.wishlist.domain.service;
 
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,10 @@ public class ProdutoService implements IProduto {
 
     @Override
     public Produto GetById(Long id) {
-        // Optional<Cliente> cliente = _clienteRepository.findById(id);
-        // if (Cliente.isPresent()) {
-        //     return Cliente.get();
-        // }
+        Optional<Produto> produto = _produtoRepository.findById(id);
+        if (produto.isPresent()) {
+            return produto.get();
+        }
         return null;
     }
 
