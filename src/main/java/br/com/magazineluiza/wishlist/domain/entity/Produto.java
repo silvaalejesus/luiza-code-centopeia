@@ -15,21 +15,28 @@ public class Produto {
         this.descricao = descricao;
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name="nome")
     private String nome;
+    @Column(name="categoria")
     private String categoria;
+    @Column(name="preco")
     private Double preco;
+    @Column(name="descricao")
     private String descricao;
 
-    public Produto(String nome, String categoria, Double preco, String descricao) {
-        this.nome = nome;
-        this.categoria = categoria;
-        this.preco = preco;
-        this.descricao = descricao;
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "produtos")
+    private List<Cliente> clientes;
+    @JsonIgnore
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    @JsonProperty
+    public void setClientes(List<Cliente> clientes) {
+        thisclientes = clientes;
     }
 
     public Long getId() {

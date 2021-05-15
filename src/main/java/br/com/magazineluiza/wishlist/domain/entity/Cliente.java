@@ -15,7 +15,19 @@ public class Cliente {
     this.cpf = cpf;
     }
 
-    private List<Produto> produto;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="wishlist",
+        joinColumns = @JoinColumn(name="id_cliente"),
+        inverseJoinColumns = @JoinColumn(name= "id_produto"))
+    private List<Produto> produtos;
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setConcessionarias(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
