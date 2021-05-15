@@ -16,6 +16,7 @@ public class WishList {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -23,6 +24,7 @@ public class WishList {
     public double getPreco() {
         return this.preco;
     }
+
     public void setPreco(double preco) {
         this.preco = preco;
     }
@@ -30,6 +32,7 @@ public class WishList {
     public int getQuantidade() {
         return this.quantidade;
     }
+    
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
@@ -37,6 +40,7 @@ public class WishList {
     public int getProdutoId() {
         return this.produtoId;
     }
+
     public void setProdutoId(int produtoId) {
         this.produtoId = produtoId;
     }
