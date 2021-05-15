@@ -14,7 +14,8 @@ public class Cliente {
     @Column(unique = true)
     private String cpf;
 
-    public Cliente(String nome, String sobrenome, String cpf) {
+    public Cliente(Long id, String nome, String sobrenome, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
