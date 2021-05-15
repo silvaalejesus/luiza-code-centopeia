@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,8 +22,12 @@ public class Produto {
     private String descricao;
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "produtos")
-    private List<Cliente> clientes;
+    private Set<Cliente> clientes = new HashSet<>();
 
+    public Produto() {
+
+    }
+    
     public Produto(String nome, String categoria, Double preco, String descricao) {
         this.nome = nome;
         this.categoria = categoria;
@@ -73,11 +76,11 @@ public class Produto {
     }
 
     @JsonIgnore
-    public List<Cliente> getClientes() {
+    public Set<Cliente> getClientes() {
         return clientes;
     }
     @JsonProperty
-    public void setClientes(List<Cliente> clientes) {
+    public void setClientes(Set<Cliente> clientes) {
         this.clientes = clientes;
     }
 }

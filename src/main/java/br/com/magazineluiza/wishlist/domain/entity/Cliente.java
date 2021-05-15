@@ -1,7 +1,10 @@
 package br.com.magazineluiza.wishlist.domain.entity;
 
 import javax.persistence.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cliente")
@@ -15,6 +18,9 @@ public class Cliente {
     @Column(unique = true)
     private String cpf;
 
+    public Cliente() {
+        
+    }
     public Cliente(Long id, String nome, String sobrenome, String cpf) {
         this.id = id;
         this.nome = nome;
@@ -27,13 +33,13 @@ public class Cliente {
             joinColumns = @JoinColumn(name="id_cliente"),
             inverseJoinColumns = @JoinColumn(name = "id_produto"))
 
-    private List<Produto> produtos;
+    private Set<Produto> produtos = new HashSet<>();
 
-    public List<Produto> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
+    public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
     }
 

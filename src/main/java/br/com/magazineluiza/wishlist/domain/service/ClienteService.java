@@ -15,10 +15,10 @@ public class ClienteService implements ICliente {
 
     @Override
     public Cliente GetById(Long id) {
-        // Optional<Cliente> cliente = _clienteRepository.findById(id);
-        // if (Cliente.isPresent()) {
-        //     return Cliente.get();
-        // }
+        Optional<Cliente> cliente = _clienteRepository.findById(id);
+        if (cliente.isPresent()) {
+            return cliente.get();
+        }
         return null;
     }
 
