@@ -21,14 +21,15 @@ public class Produto {
     private Double preco;
     private String descricao;
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "produtos")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "produtos")
     private Set<Cliente> clientes = new HashSet<>();
 
     public Produto() {
 
     }
-    
-    public Produto(String nome, String categoria, Double preco, String descricao) {
+
+    public Produto(Long id, String nome, String categoria, Double preco, String descricao) {
+        this.id = id;
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
@@ -79,6 +80,7 @@ public class Produto {
     public Set<Cliente> getClientes() {
         return clientes;
     }
+
     @JsonProperty
     public void setClientes(Set<Cliente> clientes) {
         this.clientes = clientes;
