@@ -1,9 +1,10 @@
 package br.com.magazineluiza.wishlist.domain.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "clientes")
+@Table(name = "cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,21 @@ public class Cliente {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name ="wishlist",
+            joinColumns = @JoinColumn(name="id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_produto"))
+
+    private List<Produto> produtos;
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     public Long getId() {
