@@ -1,25 +1,28 @@
 package br.com.magazineluiza.wishlist.domain.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente {
 
-    public Cliente(){
+    public Cliente() {
 
     }
+
     public Cliente(String nome, String sobrenome, String cpf) {
-    this.nome = nome;
-    this.sobrenome = sobrenome;
-    this.cpf = cpf;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name="wishlist",
-        joinColumns = @JoinColumn(name="id_cliente"),
-        inverseJoinColumns = @JoinColumn(name= "id_produto"))
+    @JoinTable(name = "wishlist",
+            joinColumns = @JoinColumn(name = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_produto"))
     private List<Produto> produtos;
+
 
     public List<Produto> getProdutos() {
         return produtos;
@@ -38,11 +41,6 @@ public class Cliente {
     @Column(unique = true)
     private String cpf;
 
-    public Cliente(String nome, String sobrenome, String cpf) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.cpf = cpf;
-    }
 
     public Long getId() {
         return id;
@@ -78,10 +76,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-    return "Cliente{" +
-        "id=" + id +
-        ", nome='" + nome + '\'' +
-        ", sobrenome='" + sobrenome + '\'' +
-        ", cpf='" + cpf + '\'' +
-        '}';
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }
+

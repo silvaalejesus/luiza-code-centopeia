@@ -1,6 +1,11 @@
 package br.com.magazineluiza.wishlist.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 @Table(name = "produtos")
@@ -36,7 +41,7 @@ public class Produto {
     }
     @JsonProperty
     public void setClientes(List<Cliente> clientes) {
-        thisclientes = clientes;
+        this.clientes = clientes;
     }
 
     public Long getId() {
