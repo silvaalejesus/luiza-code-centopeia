@@ -62,8 +62,5 @@ public class ClienteControllerTest extends BaseTest {
         // assertEquals(clienteResponse.getNome(), cliente.getNome());
         // assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
         // assertEquals(clienteResponse.getCpf(), cliente.getCpf());
-    }
-
-    
-  
+    } 
 }
