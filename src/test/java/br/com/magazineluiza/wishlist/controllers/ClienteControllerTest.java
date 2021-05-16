@@ -41,7 +41,7 @@ public class ClienteControllerTest extends BaseTest {
     private ClienteService _clienteService;
 
     @Test
-    @DisplayName("Test Create Book Return Success")
+    @DisplayName("Test Create Cliente Return Success")
     public void CreateClienteReturnSuccess() throws Exception {
         String uri = "/cliente";
         Cliente cliente = clienteBuilder.defaultValues();

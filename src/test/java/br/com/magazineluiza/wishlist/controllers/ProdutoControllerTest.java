@@ -1,5 +1,6 @@
 package br.com.magazineluiza.wishlist.controllers;
 
+import br.com.magazineluiza.wishlist.BaseTest;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
 import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
@@ -10,34 +11,53 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
 @SpringBootTest
 @ActiveProfiles("controller")
-public class ProdutoControllerTest {
-//    @InjectMocks
-//    protected ProdutoController ProdutoController;
-//
-//    @Mock
-//    private ProdutoService service;
-//
-//    @Test
-//    @DisplayName("Test createShouldReturnProduro Success")
-//    public void createShouldReturnProduto() {
-//        Produto produto = new ProdutoBuilder().defaultValues();
-//
-//        when(service.Create(produto)).thenReturn(produto);
-//        Produto result = ProdutoController.Create(produto);
-//
-//        assertEquals(produto.getNome(), result.getNome());
-//        assertEquals(produto.getCategoria(), result.getCategoria());
-//        assertEquals(produto.getDescricao(), result.getDescricao());
-//        assertEquals(produto.getPreco(), result.getPreco());
-//    }
+public class ProdutoControllerTest extends BaseTest {
+    @InjectMocks
+    private ProdutoController produtoController;
+
+    @InjectMocks
+    private ProdutoBuilder produtoBuilder;
+
+    @MockBean
+    private ProdutoService _produtoService;
+
+    @Test
+    @DisplayName("Test Create Produto Return Success")
+    public void CreateClienteReturnSuccess() throws Exception {
+        String uri = "/produto";
+        Produto produto = produtoBuilder.defaultValues();
+
+        when(_produtoService.Create(isA(Produto.class)))
+                .thenReturn(produto);
+
+        String inputJson = super.mapToJson(produto);
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.post(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson))
+                .andReturn()
+                .getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.CREATED.value());
+        Produto produtoResponse = mapFromJson(response.getContentAsString(), Produto.class);
+        assertEquals(produtoResponse.getId(), produto.getId());
+        assertEquals(produtoResponse.getNome(), produto.getNome());
+        assertEquals(produtoResponse.getDescricao(), produto.getDescricao());
+        assertEquals(produtoResponse.getPreco(), produto.getPreco());
+    }
 }
