@@ -43,11 +43,16 @@ public class ProdutoController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id) {
-        Boolean deletedProduct = _produtoService.Delete(id);
-        if (deletedProduct)
-            return new ResponseEntity<Object>(HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            Boolean deletedProduct = _produtoService.Delete(id);
+            if (deletedProduct)
+                return new ResponseEntity<Object>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Erro ao deletar produto, existe cliente vinculado a ele" + e,
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

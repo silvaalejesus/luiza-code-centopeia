@@ -57,10 +57,10 @@ public class ClienteControllerTest extends BaseTest {
         .getResponse();
 
         assertEquals(response.getStatus(), HttpStatus.CREATED.value());
-        // Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
-        // assertEquals(clienteResponse.getId(), cliente.getId());
-        // assertEquals(clienteResponse.getNome(), cliente.getNome());
-        // assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
-        // assertEquals(clienteResponse.getCpf(), cliente.getCpf());
+        Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
+        assertEquals(clienteResponse.getId(), cliente.getId());
+        assertEquals(clienteResponse.getNome(), cliente.getNome());
+        assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
+        assertEquals(clienteResponse.getCpf(), cliente.getCpf());
     } 
 }
