@@ -2,6 +2,8 @@ package br.com.magazineluiza.wishlist.domain.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,7 +36,8 @@ public class Cliente {
             inverseJoinColumns = @JoinColumn(name = "id_produto"))
 
     private Set<Produto> produtos = new HashSet<>();
-
+    
+    @JsonIgnore
     public Set<Produto> getProdutos() {
         return produtos;
     }
