@@ -87,12 +87,7 @@ public class ClienteServiceTest extends BaseTest {
     public void DeleteReturnSuccess() {
         Cliente cliente = _clienteBuilder.defaultValues();
         when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
-        when(_clienteRepository.deleteById(any(Long.class)));
-        Cliente _cliente = _clienteService.Update(cliente.getId(), cliente);
-        assertEquals(_cliente.getId(), cliente.getId());
-        assertEquals(_cliente.getNome(), cliente.getNome());
-        assertEquals(_cliente.getSobrenome(), cliente.getSobrenome());
-        assertEquals(_cliente.getCpf(), cliente.getCpf());
+        Boolean response = _clienteService.Delete(cliente.getId());
+        assertEquals(response, true);
     }
-
 }
