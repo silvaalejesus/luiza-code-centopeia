@@ -31,7 +31,8 @@ public class ClienteService implements IClienteService {
     public Boolean Delete(Long id) {
         Cliente cliente = GetById(id);
         if (cliente != null) {
-            _clienteRepository.delete(cliente);
+             cliente.getProdutos().removeAll(cliente.getProdutos());
+            _clienteRepository.deleteById(id);
             return true;
         }
         return false;

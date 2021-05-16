@@ -7,4 +7,5 @@ import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {
     Optional<Cliente> findByCpf(String cpf);
+    public void deleteById(Long id);
 }
