@@ -81,8 +81,8 @@ public class Produto {
         return clientes;
     }
 
-    @JsonProperty
-    public void setClientes(Set<Cliente> clientes) {
-        this.clientes = clientes;
-    }
+    // @JsonProperty
+    // public void setClientes(Set<Cliente> clientes) {
+    //     this.clientes = clientes;
+    // }
 }

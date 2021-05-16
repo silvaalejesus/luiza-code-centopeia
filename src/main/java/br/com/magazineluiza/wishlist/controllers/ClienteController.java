@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.service.ClienteService;
 
@@ -32,6 +31,15 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET)
+    public ResponseEntity<Cliente> GetByCpf(@PathVariable(value = "cpf") String cpf) {
+        Cliente cliente = _clienteService.GetByCpf(cpf);
+        if (cliente != null)
+            return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Cliente> Create(@RequestBody Cliente cliente) {
         return new ResponseEntity<Cliente>(_clienteService.Create(cliente), HttpStatus.CREATED);
@@ -39,11 +47,15 @@ public class ClienteController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id) {
-        Boolean deletedClient = _clienteService.Delete(id);
-        if (deletedClient)
-            return new ResponseEntity<Object>(HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            Boolean deletedClient = _clienteService.Delete(id);
+            if (deletedClient)
+                return new ResponseEntity<Object>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Erro ao deletar cliente" + e, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

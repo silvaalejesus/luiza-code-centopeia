@@ -1,15 +1,13 @@
 package br.com.magazineluiza.wishlist.domain.service;
 
 import java.util.Optional;
-
-import org.hibernate.procedure.ProcedureCallMemento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.repository.ProdutoRepository;
 
 @Service
-public class ProdutoService implements IProduto {
+public class ProdutoService implements IProdutoService {
     @Autowired
     private ProdutoRepository _produtoRepository;
 

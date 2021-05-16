@@ -9,7 +9,7 @@ import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.repository.ClienteRepository;
 
 @Service
-public class ClienteService implements ICliente {
+public class ClienteService implements IClienteService {
     @Autowired
     private ClienteRepository _clienteRepository;
 
@@ -44,6 +44,15 @@ public class ClienteService implements ICliente {
             cliente.setSobrenome(_cliente.getSobrenome());
             cliente.setCpf(_cliente.getCpf());
             return Create(cliente);
+        }
+        return null;
+    }
+
+    @Override
+    public Cliente GetByCpf(String cpf) {
+        Optional<Cliente> cliente = _clienteRepository.findByCpf(cpf);
+        if (cliente.isPresent()) {
+            return cliente.get();
         }
         return null;
     }
