@@ -19,7 +19,7 @@ public class WishlistService implements IWishlistService {
 
   @Override
   public Object Create(Long idCliente, Set<Long> idProdutos) throws Exception {
-    if(idProdutos.size() > 20) {
+    if (idProdutos.size() > 20) {
       throw new Exception("não pode adicionar mais de 20 produtos!");
     }
 
@@ -33,6 +33,25 @@ public class WishlistService implements IWishlistService {
       }
       cliente.setProdutos(produtos);
       return _clienteService.Create(cliente);
+    }
+    return null;
+  }
+
+  @Override
+  public Set<Produto> GetProdutosByIdCliente(Long idCliente) {
+    Cliente cliente = _clienteService.GetById(idCliente);
+    if (cliente != null) {
+      return cliente.getProdutos();
+    }
+    return null;
+  }
+
+  @Override
+  public Produto GetProdutoByIdProduto(Long idCliente, Long idProdutos) {
+    Cliente cliente = _clienteService.GetById(idCliente);
+    if (cliente != null) {
+      Set<Produto> produtos = cliente.getProdutos();
+      return produtos.stream().filter(item -> item.getId().equals(idProdutos)).findFirst().orElse(null);
     }
     return null;
   }
