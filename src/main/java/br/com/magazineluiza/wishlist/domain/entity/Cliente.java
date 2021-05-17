@@ -23,11 +23,13 @@ public class Cliente {
     public Cliente() {
         
     }
-    public Cliente(Long id, String nome, String sobrenome, String cpf) {
+
+    public Cliente(Long id, String nome, String sobrenome, String cpf, Set<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
+        this.produtos = produtos;
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
