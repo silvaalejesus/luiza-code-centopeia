@@ -3,6 +3,7 @@ package br.com.magazineluiza.wishlist.domain.entity;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +40,7 @@ public class Cliente {
 
     private Set<Produto> produtos = new HashSet<>();
     
-    @JsonIgnore
+
     public Set<Produto> getProdutos() {
         return produtos;
     }
