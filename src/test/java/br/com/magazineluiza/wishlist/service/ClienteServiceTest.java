@@ -61,14 +61,14 @@ public class ClienteServiceTest extends BaseTest {
         assertEquals(_cliente.getCpf(), cliente.getCpf());
     }
 
-    // @Test
-    // @DisplayName("Test GetById Return null")
-    // public void getByIdReturnNull() {
-    //     Cliente cliente = _clienteBuilder.defaultValues();
-    //     when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(null));
-    //     Cliente _cliente = _clienteService.GetById(cliente.getId());
-    //     assertEquals(_cliente, null);
-    // }
+     @Test
+     @DisplayName("Test GetById Return null")
+    public void getByIdReturnNull() {
+        Optional<Cliente> cliente  = Optional.empty();
+        when(_clienteRepository.findById(1L)).thenReturn(cliente);
+        Cliente _cliente = _clienteService.GetById(1L);
+        assertEquals(_cliente, null);
+    }
 
     @Test
     @DisplayName("Test GetByCpf Return Success")
