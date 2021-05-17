@@ -71,6 +71,18 @@ public class ClienteServiceTest extends BaseTest {
     // }
 
     @Test
+    @DisplayName("Test GetByCpf Return Success")
+    public void getByCpf() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        when(_clienteRepository.findByCpf(any(String.class))).thenReturn(Optional.of(cliente));
+        Cliente _cliente = _clienteService.GetByCpf(cliente.getCpf());
+        assertEquals(_cliente.getNome(), cliente.getNome());
+        assertEquals(_cliente.getSobrenome(), cliente.getSobrenome());
+        assertEquals(_cliente.getCpf(), cliente.getCpf());
+    }
+
+
+    @Test
     @DisplayName("Test Update Return Success")
     public void UpdateReturnSuccess() {
         Cliente cliente = _clienteBuilder.defaultValues();
