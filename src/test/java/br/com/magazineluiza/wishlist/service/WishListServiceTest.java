@@ -20,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -58,5 +59,13 @@ public class WishListServiceTest {
 //        when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
 //        //Nao sei como setar o id do produto aqui com tipo que esta sendo passado.
 //        Cliente wishlist = _wishlistService.Create(cliente.getId());
+    }
+    @Test
+    @DisplayName("Test Return Products from cliente Success")
+    public void GetProdutosByIdClienteReturnSuccess() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
+        Set<Produto> listaProduto = _wishlistService.GetProdutosByIdCliente(1L);
+
     }
 }
