@@ -20,6 +20,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import br.com.magazineluiza.wishlist.domain.service.ClienteService;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
@@ -62,5 +64,72 @@ public class ClienteControllerTest extends BaseTest {
         assertEquals(clienteResponse.getNome(), cliente.getNome());
         assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
         assertEquals(clienteResponse.getCpf(), cliente.getCpf());
-    } 
+    }
+
+    @Test
+    @DisplayName("Test Buscar Cliente por Cpf Return Success")
+    public void GetByCpfReturnSuccess() throws Exception {
+        String uri = "/cliente";
+        Cliente cliente = clienteBuilder.defaultValues();
+
+        when(_clienteService.GetByCpf(isA(String.class)))
+                .thenReturn(cliente);
+
+        String inputJson = super.mapToJson(cliente);
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson))
+                .andReturn()
+                .getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.OK.value());
+        Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
+        assertEquals(clienteResponse.getId(), cliente.getId());
+        assertEquals(clienteResponse.getNome(), cliente.getNome());
+        assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
+        assertEquals(clienteResponse.getCpf(), cliente.getCpf());
+    }
+
+    @Test
+    @DisplayName("Test Buscar Cliente por Id Return Success")
+    public void GetByIdSuccess() throws Exception {
+        String uri = "/cliente";
+        Cliente cliente = clienteBuilder.defaultValues();
+
+        when(_clienteService.GetById(isA(Long.class)))
+                .thenReturn(cliente);
+
+        String inputJson = super.mapToJson(cliente);
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson))
+                .andReturn()
+                .getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.OK.value());
+        Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
+        assertEquals(clienteResponse.getId(), cliente.getId());
+        assertEquals(clienteResponse.getNome(), cliente.getNome());
+        assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
+        assertEquals(clienteResponse.getCpf(), cliente.getCpf());
+    }
+    
+    @Test
+    @DisplayName("Test Delete Return Success")
+    public void DeleteReturnSuccess() throws Exception {
+        String uri = "/cliente";
+        Cliente cliente = clienteBuilder.defaultValues();
+
+        when(_clienteService.Delete(isA(Long.class)))
+                .thenReturn(true);
+
+        String inputJson = super.mapToJson(cliente);
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.delete(uri)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(inputJson))
+                .andReturn()
+                .getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.OK.value());
+    }
 }
