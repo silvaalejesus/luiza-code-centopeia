@@ -65,8 +65,8 @@ public class ClienteServiceTest extends BaseTest {
      @DisplayName("Test GetById Return null")
     public void getByIdReturnNull() {
         Optional<Cliente> cliente  = Optional.empty();
-        when(_clienteRepository.findById(1L)).thenReturn(cliente);
-        Cliente _cliente = _clienteService.GetById(1L);
+        when(_clienteRepository.findById(2L)).thenReturn(cliente);
+        Cliente _cliente = _clienteService.GetById(2L);
         assertEquals(_cliente, null);
     }
 
@@ -83,6 +83,15 @@ public class ClienteServiceTest extends BaseTest {
 
 
     @Test
+    @DisplayName("Test GetByCpf Return null")
+    public void getByCpfReturnNull() {
+        Optional<Cliente> cliente  = Optional.empty();
+        when(_clienteRepository.findByCpf("73522372085")).thenReturn(cliente);
+        Cliente _cliente = _clienteService.GetByCpf("73522372085");
+        assertEquals(_cliente, null);
+    }
+
+    @Test
     @DisplayName("Test Update Return Success")
     public void UpdateReturnSuccess() {
         Cliente cliente = _clienteBuilder.defaultValues();
@@ -94,6 +103,16 @@ public class ClienteServiceTest extends BaseTest {
         assertEquals(_cliente.getSobrenome(), cliente.getSobrenome());
         assertEquals(_cliente.getCpf(), cliente.getCpf());
     }
+
+    @Test
+    @DisplayName("Test Update Return null")
+    public void UpdateReturnNull() {
+        Optional<Cliente> cliente  = Optional.empty();
+        when(_clienteRepository.findById(2L)).thenReturn(cliente);
+        Cliente _cliente = _clienteService.Update(2L, _clienteBuilder.defaultValues());
+        assertEquals(_cliente, null);
+    }
+
     @Test
     @DisplayName("Test Delete Return Success")
     public void DeleteReturnSuccess() {
@@ -101,5 +120,14 @@ public class ClienteServiceTest extends BaseTest {
         when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
         Boolean response = _clienteService.Delete(cliente.getId());
         assertEquals(response, true);
+    }
+
+    @Test
+    @DisplayName("Test Delete Return False")
+    public void DeleteReturnFalse() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
+        Boolean response = _clienteService.Delete(cliente.getId());
+        assertEquals(response, false);
     }
 }
