@@ -11,6 +11,8 @@ import br.com.magazineluiza.wishlist.domain.entity.Produto;
 
 @Service
 public class WishlistService implements IWishlistService {
+  private static final String _WishlistRepository = null;
+
   @Autowired
   private ClienteService _clienteService;
 
@@ -56,4 +58,26 @@ public class WishlistService implements IWishlistService {
     return null;
   }
 
+  @Override
+  public Boolean Delete(Long idCliente, Long idProduto) {
+    Cliente cliente = _clienteService.GetById(idCliente);
+    if (cliente != null) {
+      cliente.getProdutos().removeIf(produto -> produto.getId().equals(idProduto));
+      _clienteService.Create(cliente);
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public Boolean Insert(Long idCliente, Long idProduto) {
+    Cliente cliente = _clienteService.GetById(idCliente);
+    if (cliente != null) {
+      Produto produto = _produtoService.GetById(idProduto);
+      cliente.getProdutos().add(produto);
+      _clienteService.Create(cliente);
+      return true;
+    }
+    return false;
+  }
 }
