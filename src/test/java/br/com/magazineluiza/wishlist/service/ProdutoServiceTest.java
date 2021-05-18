@@ -35,14 +35,14 @@ public class ProdutoServiceTest extends BaseTest {
     private ProdutoBuilder _produtoBuilder;
 
     @InjectMocks
-    private ProdutoService _clienteService;
+    private ProdutoService _produtoService;
 
     @Test
     @DisplayName("Test Create Produto Return Success")
     public void CreateProdutoReturnSuccess() {
         Produto produto = _produtoBuilder.defaultValues();
         when(_produtoRepository.save(any(Produto.class))).thenReturn(produto);
-        Produto created = _clienteService.Create(produto);
+        Produto created = _produtoService.Create(produto);
         assertEquals(created.getNome(), produto.getNome());
         assertEquals(created.getDescricao(), produto.getDescricao());
         assertEquals(created.getCategoria(), produto.getCategoria());
@@ -53,11 +53,20 @@ public class ProdutoServiceTest extends BaseTest {
     public void getById() {
         Produto produto = _produtoBuilder.defaultValues();
         when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
-        Produto _produto = _clienteService.GetById(produto.getId());
+        Produto _produto = _produtoService.GetById(produto.getId());
         assertEquals(_produto.getId(), produto.getId());
         assertEquals(_produto.getNome(), produto.getNome());
         assertEquals(_produto.getDescricao(), produto.getDescricao());
         assertEquals(_produto.getCategoria(), produto.getCategoria());
+    }
+
+    @Test
+    @DisplayName("Test GetById Return null")
+    public void getByIdReturnNull() {
+        Optional<Produto> produto  = Optional.empty();
+        when(_produtoRepository.findById(2L)).thenReturn(produto);
+        Produto _produto = _produtoService.GetById(2L);
+        assertEquals(_produto, null);
     }
 
     @Test
@@ -66,7 +75,7 @@ public class ProdutoServiceTest extends BaseTest {
         Produto produto = _produtoBuilder.defaultValues();
         when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
         when(_produtoRepository.save(any(Produto.class))).thenReturn(produto);
-        Produto _produto = _clienteService.Update(produto.getId(), produto);
+        Produto _produto = _produtoService.Update(produto.getId(), produto);
         assertEquals(_produto.getId(), produto.getId());
         assertEquals(_produto.getNome(), produto.getNome());
         assertEquals(_produto.getDescricao(), produto.getDescricao());
@@ -74,11 +83,29 @@ public class ProdutoServiceTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Test Update Return null")
+    public void UpdateReturnNull() {
+        Optional<Produto> produto  = Optional.empty();
+        when(_produtoRepository.findById(2L)).thenReturn(produto);
+        Produto _produto = _produtoService.Update(2L, _produtoBuilder.defaultValues());
+        assertEquals(_produto, null);
+    }
+
+    @Test
     @DisplayName("Test Delete Return Success")
     public void DeleteReturnSuccess() {
         Produto produto = _produtoBuilder.defaultValues();
         when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
-        Boolean response = _clienteService.Delete(produto.getId());
+        Boolean response = _produtoService.Delete(produto.getId());
         assertEquals(response, true);
+    }
+
+    @Test
+    @DisplayName("Test Delete Return False")
+    public void DeleteReturnFalse() {
+        Produto produto = _produtoBuilder.defaultValues();
+        when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
+        Boolean response = _produtoService.Delete(produto.getId());
+        assertEquals(response, false);
     }
 }
