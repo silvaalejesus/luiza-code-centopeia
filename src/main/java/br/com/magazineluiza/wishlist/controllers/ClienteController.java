@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.service.ClienteService;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * ClienteController
@@ -22,6 +23,7 @@ public class ClienteController {
     @Autowired
     private ClienteService _clienteService;
 
+    @ApiOperation (value = "Buscar cliente por ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Cliente> GetById(@PathVariable(value = "id") long id) {
         Cliente cliente = _clienteService.GetById(id);
@@ -31,6 +33,7 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @ApiOperation (value = "Buscar cliente por CPF")
     @RequestMapping(value = "/cpf/{cpf}", method = RequestMethod.GET)
     public ResponseEntity<Cliente> GetByCpf(@PathVariable(value = "cpf") String cpf) {
         Cliente cliente = _clienteService.GetByCpf(cpf);
@@ -40,11 +43,13 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @ApiOperation (value = "Criar cadastro do cliente")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Cliente> Create(@RequestBody Cliente cliente) {
         return new ResponseEntity<Cliente>(_clienteService.Create(cliente), HttpStatus.CREATED);
     }
 
+    @ApiOperation (value = "Remover cadastro do cliente;")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id) {
         try {
@@ -58,6 +63,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation (value = "Atualizar informações do cadastro do cliente")
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Cliente> Update(@PathVariable(value = "id") long id, @RequestBody Cliente cliente) {
         Cliente client = _clienteService.Update(id, cliente);
