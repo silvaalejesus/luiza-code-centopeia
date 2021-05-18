@@ -3,6 +3,7 @@ package br.com.magazineluiza.wishlist.domain.entity;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashSet;
 import java.util.List;
@@ -23,11 +24,13 @@ public class Cliente {
     public Cliente() {
         
     }
-    public Cliente(Long id, String nome, String sobrenome, String cpf) {
+
+    public Cliente(Long id, String nome, String sobrenome, String cpf, Set<Produto> produtos) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
+        this.produtos = produtos;
     }
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -37,7 +40,7 @@ public class Cliente {
 
     private Set<Produto> produtos = new HashSet<>();
     
-    @JsonIgnore
+
     public Set<Produto> getProdutos() {
         return produtos;
     }
