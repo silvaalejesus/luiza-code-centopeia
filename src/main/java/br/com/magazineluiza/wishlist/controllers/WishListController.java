@@ -71,7 +71,7 @@ public class WishListController {
         }
     }
 
-    @ApiOperation(value = "Adicionar Produto único na WishList")
+    @ApiOperation(value = "Adicionar um Produto na WishList")
     @RequestMapping(value = "/cliente/{idCliente}/produto/{idProduto}", method = RequestMethod.POST)
     public ResponseEntity<Object> Insert(@PathVariable(value = "idCliente") long idCliente,
             @PathVariable(value = "idProduto") Long idProduto) {

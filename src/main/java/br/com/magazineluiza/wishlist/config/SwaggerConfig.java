@@ -31,7 +31,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
 
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title ("Wishlist challenge")
+                .title ("Wishlist Luiza Code")
                 .description ("This is an API designed for testing.")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
