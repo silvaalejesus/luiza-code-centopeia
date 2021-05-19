@@ -61,8 +61,8 @@ public class ClienteServiceTest extends BaseTest {
         assertEquals(_cliente.getCpf(), cliente.getCpf());
     }
 
-     @Test
-     @DisplayName("Test GetById Return null")
+    @Test
+    @DisplayName("Test GetById Return null")
     public void getByIdReturnNull() {
         Optional<Cliente> cliente  = Optional.empty();
         when(_clienteRepository.findById(2L)).thenReturn(cliente);
