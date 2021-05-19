@@ -140,6 +140,8 @@ public class ClienteControllerTest extends BaseTest {
         when(_clienteService.Delete(isA(Long.class)))
                 .thenReturn(true);
 
-        MockHttpServletResponse response = (MockHttpServletResponse) mvc.perform(MockMvcRequestBuilders.delete(uri,cliente.getId())).andExpect(status().isOk()).andReturn();
+        MockHttpServletResponse response = (MockHttpServletResponse) mvc.perform(MockMvcRequestBuilders.delete(uri,cliente.getId()))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 }
