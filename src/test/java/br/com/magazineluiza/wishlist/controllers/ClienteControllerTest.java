@@ -25,6 +25,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @ExtendWith(SpringExtension.class)
@@ -75,9 +76,9 @@ public class ClienteControllerTest extends BaseTest {
         when(_clienteService.GetByCpf(isA(String.class)))
                 .thenReturn(cliente);
 
-        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri,cliente.getCpf()))
+        MockHttpServletResponse response = (MockHttpServletResponse) mvc.perform(MockMvcRequestBuilders.get(uri,cliente.getCpf()))
             .andExpect(status().isOk())
-            .andReturn(); 
+            .andReturn();
 
         Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
         assertEquals(clienteResponse.getId(), cliente.getId());
@@ -95,10 +96,34 @@ public class ClienteControllerTest extends BaseTest {
         when(_clienteService.GetById(isA(Long.class)))
             .thenReturn(cliente);
 
-        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.get(uri,cliente.getId()))
+        MockHttpServletResponse response = (MockHttpServletResponse) mvc.perform(MockMvcRequestBuilders.get(uri,cliente.getId()))
             .andExpect(status().isOk())
             .andReturn();   
 
+        Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
+        assertEquals(clienteResponse.getId(), cliente.getId());
+        assertEquals(clienteResponse.getNome(), cliente.getNome());
+        assertEquals(clienteResponse.getSobrenome(), cliente.getSobrenome());
+        assertEquals(clienteResponse.getCpf(), cliente.getCpf());
+    }
+
+    @Test
+    @DisplayName("Test Update Cliente Return Success")
+    public void UpdateReturnSuccess() throws Exception {
+        String uri = "/cliente/";
+        Cliente cliente = clienteBuilder.defaultValues();
+
+        when(_clienteService.Create(isA(Cliente.class)))
+         .thenReturn(cliente);
+
+        String inputJson = super.mapToJson(cliente);
+        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.put(uri,cliente.getId())
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .content(inputJson))
+        .andReturn()
+        .getResponse();
+
+        assertEquals(response.getStatus(), HttpStatus.NO_CONTENT.value());
         Cliente clienteResponse = mapFromJson(response.getContentAsString(), Cliente.class);
         assertEquals(clienteResponse.getId(), cliente.getId());
         assertEquals(clienteResponse.getNome(), cliente.getNome());
@@ -115,6 +140,6 @@ public class ClienteControllerTest extends BaseTest {
         when(_clienteService.Delete(isA(Long.class)))
                 .thenReturn(true);
 
-        MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders.delete(uri,cliente.getId())).andExpect(status().isOk()).andReturn();            
+        MockHttpServletResponse response = (MockHttpServletResponse) mvc.perform(MockMvcRequestBuilders.delete(uri,cliente.getId())).andExpect(status().isOk()).andReturn();
     }
 }
