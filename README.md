@@ -22,7 +22,7 @@ Projeto final do curso Luiza code 2° edição onde desenvolvemos o back-end de 
 
 ### Features
 
-- [x] Cadastro de clientes
+- [v] Cadastro de clientes
 - [x] Cadastro de produtos
 - [x] Wishlist
 
