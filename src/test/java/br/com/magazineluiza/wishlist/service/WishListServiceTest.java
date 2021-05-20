@@ -1,12 +1,12 @@
 package br.com.magazineluiza.wishlist.service;
 
+import br.com.magazineluiza.wishlist.BaseTest;
 import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ClienteBuilder;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
-import br.com.magazineluiza.wishlist.domain.repository.ClienteRepository;
-import br.com.magazineluiza.wishlist.domain.repository.ProdutoRepository;
 import br.com.magazineluiza.wishlist.domain.service.ClienteService;
+import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
 import br.com.magazineluiza.wishlist.domain.service.WishlistService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,10 +19,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -31,12 +33,10 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 @SpringBootTest
 @ActiveProfiles("service")
-public class WishListServiceTest {
-    @InjectMocks
-    private ClienteRepository _clienteRepository;
+public class WishListServiceTest extends BaseTest {
 
     @InjectMocks
-    private ProdutoRepository _produtoRepository;
+    private ProdutoService _produtoService;
 
     @InjectMocks
     private ClienteBuilder _clienteBuilder;
@@ -52,20 +52,45 @@ public class WishListServiceTest {
 
     @Test
     @DisplayName("Test Create Wishlist Return Success")
-    public void CreateClienteReturnSuccess() {
-//        Cliente cliente = _clienteBuilder.defaultValues();
-//        Produto produto = _produtoBuilder.defaultValues();
-//        when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
-//        when(_produtoRepository.findById(any(Long.class))).thenReturn(Optional.of(produto));
-//        //Nao sei como setar o id do produto aqui com tipo que esta sendo passado.
-//        Cliente wishlist = _wishlistService.Create(cliente.getId());
-    }
-    @Test
-    @DisplayName("Test Return Products from cliente Success")
-    public void GetProdutosByIdClienteReturnSuccess() {
+    public void CreateClienteReturnSuccess() throws Exception {
         Cliente cliente = _clienteBuilder.defaultValues();
-        when(_clienteRepository.findById(any(Long.class))).thenReturn(Optional.of(cliente));
-        Set<Produto> listaProduto = _wishlistService.GetProdutosByIdCliente(1L);
+        Produto produto = _produtoBuilder.defaultValues();
+        Set<Long> idProduto = new HashSet<>();
+        idProduto.add(1L);
+        when(_clienteService.GetById(any(Long.class))).thenReturn(cliente);
+        when(_produtoService.GetById(any(Long.class))).thenReturn(produto);
+        when(_clienteService.Create(any(Cliente.class))).thenReturn(cliente);
+        Object wishlist = _wishlistService.Create(cliente.getId(),idProduto);
+    }
 
+    @Test
+    @DisplayName("Test Return  GetProdutosByIdCliente Success")
+    public void GetProdutosByIdReturnSuccess() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        when(_clienteService.GetById(any(Long.class))).thenReturn(cliente);
+        Set<Produto> listaProduto = _wishlistService.GetProdutosByIdCliente(cliente.getId());
+    }
+
+    @Test
+    @DisplayName("Test Return Delete Success")
+    public void DeleteReturnSuccess() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        Produto produto = _produtoBuilder.defaultValues();
+        when(_clienteService.GetById(any(Long.class))).thenReturn(cliente);
+        Boolean response = _wishlistService.Delete(cliente.getId(),produto.getId());
+        assertEquals(response, true);
+
+    }
+
+    @Test
+    @DisplayName("Test Return Insert Success")
+    public void InsertReturnSuccess() {
+        Cliente cliente = _clienteBuilder.defaultValues();
+        Produto produto = _produtoBuilder.defaultValues();
+        when(_clienteService.GetById(any(Long.class))).thenReturn(cliente);
+        when(_produtoService.GetById(any(Long.class))).thenReturn(produto);
+        when(_clienteService.Create(any(Cliente.class))).thenReturn(cliente);
+        Boolean response = _wishlistService.Delete(cliente.getId(),produto.getId());
+        assertEquals(response, true);
     }
 }
