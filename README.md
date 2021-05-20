@@ -1,6 +1,8 @@
+<img src="https://img.shields.io/static/v1?label=java&message=java&color=blue&style=flat&logo=ghost"/> [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE) [![GitHub version](https://badge.fury.io/gh/Naereen%2FStrapDown.js.svg)](https://github.com/Naereen/StrapDown.js) ![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)
+
+
 # luiza-code-centopeia
 <h1 align="center">WishList</h1>
-<p align="center">Descrição</p>
 Projeto final do curso Luiza code 2° edição onde desenvolvemos o back-end de uma wishlist.
 
 
@@ -20,9 +22,13 @@ Projeto final do curso Luiza code 2° edição onde desenvolvemos o back-end de 
    * [Tecnologias](#tecnologias)
 <!--te-->
 
+<h4 align="center"> 
+	🚧  WishList 🚀 Concluída  🚧
+</h4>
+
 ### Features
 
-- [v] Cadastro de clientes
+- [x] Cadastro de clientes
 - [x] Cadastro de produtos
 - [x] Wishlist
 
@@ -36,10 +42,11 @@ Além disto é bom ter um editor da sua preferência.
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+$ git clone <https://github.com/silvaalejesus/luiza-code-centopeia>
 
-# Execute a aplicação em modo de desenvolvimento
+# instale as dependências
 $ mvn clean install
+$ mvn spring-boot:run
 
 # O servidor inciará na porta:8080 - acesse <http://localhost:8080>
 ```
@@ -48,27 +55,23 @@ $ mvn clean install
 As seguintes ferramentas foram usadas na construção do projeto:
 
 - [JDK](https://www.oracle.com/br/java/technologies/javase-downloads.html)
-- [Maven](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [SpringBoot](https://reactnative.dev/)
-- [Postman](https://www.typescriptlang.org/)
+- [Maven](https://maven.apache.org/)
+- [ReactJs](https://pt-br.reactjs.org/)
+- [SpringBoot](https://spring.io/projects/spring-boot)
+- [Postman](https://www.postman.com/)
 - [Mysql](https://www.mysql.com/)
 - [mysql workbench](https://www.mysql.com/products/workbench/)
 ======================================================================================
 Necessária pré configuração das seguintes tecnologias:
 
-Apache Maven 3.5.0 ( ou superior) Java version: 1.8.0_144 ( ou superior) Seguintes extensões foram utilizadas para implementação org.springframework.boot - 1.5.7.RELEASE -spring-boot-starter-security -spring-boot-starter-data-mongodb
+Apache Maven 3.5.0 ( ou superior) Java version: 1.8.0_144 ( ou superior) Seguintes extensões foram utilizadas para implementação org.springframework.boot - 1.5.7.RELEASE
 
 1. Fazer download do projeto
 
 2. Alterar conexões do banco de dados no arquivo application.properties
-
-Em caso de utilização do banco localmente ( Gerar um arquivo Js para os inserts abaixo)
-
-db.user.insertMany([{"nickname": "root","password": "123456"}])
-
-db.product.insertMany([{"name":"Beer","type": "drink"}, {"name":"Coca-cola","type": "drink"}, {"name":"Doritos","type": "Snack"}])
-
+ * url do seu banco de dados
+ * user
+ * password
 3. No cmd na pasta do projeto rodar os seguintes comando:
 • mvn clean install
 • mvn spring-boot:run
@@ -79,4 +82,4 @@ http:localhost:8080 ( Esperado Erro 402: Access Denied)
 
 http:localhost:8080/login 
 
-Em Header adicionar um novo usúario e fazer uma nova requisição GET para o endereço http:localhost:8080/home
+Em Header adicionar um novo usúario e fazer uma nova requisição GET para o endereço http:localhost:8080/cliente
