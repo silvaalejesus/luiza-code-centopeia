@@ -2,8 +2,14 @@ package br.com.magazineluiza.wishlist.domain.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "produtos")
+@Table(name = "produto")
 public class Produto {
 
     @Id
@@ -14,8 +20,24 @@ public class Produto {
     private String categoria;
     private Double preco;
     private String descricao;
-   
-    
+    private String imagem;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "produtos")
+    private Set<Cliente> clientes = new HashSet<>();
+
+    public Produto() {
+
+    }
+
+    public Produto(Long id, String nome, String categoria, Double preco, String descricao, String imagem ) {
+        this.id = id;
+        this.nome = nome;
+        this.categoria = categoria;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.imagem = imagem;
+    }
+
     public Long getId() {
         return id;
     }
@@ -55,4 +77,22 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    @JsonIgnore
+    public Set<Cliente> getClientes() {
+        return clientes;
+    }
+
+     @JsonProperty
+     public void setClientes(Set<Cliente> clientes) {
+         this.clientes = clientes;
+     }
 }
