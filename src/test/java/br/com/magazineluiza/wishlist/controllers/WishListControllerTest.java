@@ -5,13 +5,11 @@ import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.entity.ClienteBuilder;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
-import br.com.magazineluiza.wishlist.domain.service.WishlistService;
+import br.com.magazineluiza.wishlist.service.WishlistService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 

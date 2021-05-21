@@ -18,7 +18,6 @@ public class Cliente {
 
     private String nome;
     private String sobrenome;
-    @Column(unique = true)
     private String cpf;
 
     public Cliente() {

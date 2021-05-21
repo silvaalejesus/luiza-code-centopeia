@@ -5,9 +5,6 @@ import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ClienteBuilder;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
-import br.com.magazineluiza.wishlist.domain.service.ClienteService;
-import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
-import br.com.magazineluiza.wishlist.domain.service.WishlistService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +17,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package br.com.magazineluiza.wishlist.domain.service;
+package br.com.magazineluiza.wishlist.service;
 
 import java.util.HashSet;
 import java.util.Set;
