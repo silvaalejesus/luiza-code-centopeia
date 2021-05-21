@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.magazineluiza.wishlist.domain.entity.Cliente;
-import br.com.magazineluiza.wishlist.domain.service.ClienteService;
+import br.com.magazineluiza.wishlist.service.ClienteService;
 import io.swagger.annotations.ApiOperation;
 
 /**

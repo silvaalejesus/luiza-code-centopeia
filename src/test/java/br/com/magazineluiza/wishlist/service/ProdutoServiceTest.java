@@ -4,7 +4,6 @@ import br.com.magazineluiza.wishlist.BaseTest;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
 import br.com.magazineluiza.wishlist.domain.repository.ProdutoRepository;
-import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

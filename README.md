@@ -75,8 +75,7 @@ Apache Maven 3.5.0 ( ou superior) Java version: 1.8.0_144 ( ou superior) Seguint
 3. No cmd na pasta do projeto rodar os seguintes comando:
 • mvn clean install
 • mvn spring-boot:run
-4. Browser ( De sua preferencia)
-http:localhost:8080/cliente
-http:localhost:8080/produto
+4. Pra visualiação e consumo das rotas [acesse]( http://localhost:8080/swagger-ui.html#/)
+ 
 
-* Recomendo a utilzação do Postman
+

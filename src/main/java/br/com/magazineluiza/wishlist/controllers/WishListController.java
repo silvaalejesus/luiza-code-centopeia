@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
-import br.com.magazineluiza.wishlist.domain.service.WishlistService;
+import br.com.magazineluiza.wishlist.service.WishlistService;
 import io.swagger.annotations.ApiOperation;
 
 /**

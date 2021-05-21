@@ -18,9 +18,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import br.com.magazineluiza.wishlist.domain.service.ClienteService;
-
-import java.util.Optional;
+import br.com.magazineluiza.wishlist.service.ClienteService;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.isA;

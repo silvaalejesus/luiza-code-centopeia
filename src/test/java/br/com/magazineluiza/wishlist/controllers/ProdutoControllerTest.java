@@ -1,15 +1,13 @@
 package br.com.magazineluiza.wishlist.controllers;
 
 import br.com.magazineluiza.wishlist.BaseTest;
-import br.com.magazineluiza.wishlist.domain.entity.Cliente;
 import br.com.magazineluiza.wishlist.domain.entity.Produto;
 import br.com.magazineluiza.wishlist.domain.entity.ProdutoBuilder;
-import br.com.magazineluiza.wishlist.domain.service.ProdutoService;
+import br.com.magazineluiza.wishlist.service.ProdutoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
