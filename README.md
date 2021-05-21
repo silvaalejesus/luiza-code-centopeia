@@ -61,7 +61,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Postman](https://www.postman.com/)
 - [Mysql](https://www.mysql.com/)
 - [mysql workbench](https://www.mysql.com/products/workbench/)
-======================================================================================
+
 Necessária pré configuração das seguintes tecnologias:
 
 Apache Maven 3.5.0 ( ou superior) Java version: 1.8.0_144 ( ou superior) Seguintes extensões foram utilizadas para implementação org.springframework.boot - 1.5.7.RELEASE
@@ -76,10 +76,7 @@ Apache Maven 3.5.0 ( ou superior) Java version: 1.8.0_144 ( ou superior) Seguint
 • mvn clean install
 • mvn spring-boot:run
 4. Browser ( De sua preferencia)
-http:localhost:8080 ( Esperado Erro 402: Access Denied)
+http:localhost:8080/cliente
+http:localhost:8080/produto
 
 * Recomendo a utilzação do Postman
-
-http:localhost:8080/login 
-
-Em Header adicionar um novo usúario e fazer uma nova requisição GET para o endereço http:localhost:8080/cliente
